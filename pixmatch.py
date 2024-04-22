@@ -62,7 +62,7 @@ def ReduceGapFromPageTop(wch_section = 'main page'):
         st.markdown(" <style> div[class^='block-container'] { padding-top: 2rem; } </style> ", True) # main area
         st.markdown(" <style> div[class^='st-emotion-cache-10oheav'] { padding-top: 0rem; } </style> ", True) # sidebar
     
-def Leaderboard(what_to_do):
+def Leaderboard(what_to_do): # se definen los 3 jugadores con mayor puntaje y se imprimen
     if what_to_do == 'create':
         if mystate.GameDetails[3] != '':
             if os.path.isfile(vpth + 'leaderboard.json') == False:
@@ -101,7 +101,7 @@ def Leaderboard(what_to_do):
                         elif rknt == 2: sc2.write(f"🥈 | {leaderboard[vkey]['NameCountry']}: :red[{leaderboard[vkey]['HighestScore']}]")
                         elif rknt == 3: sc3.write(f"🥈 | {leaderboard[vkey]['NameCountry']}: :red[{leaderboard[vkey]['HighestScore']}]")
 
-def InitialPage():
+def InitialPage(): # Se inicializa la pagina inicial
     with st.sidebar:
         st.subheader("🖼️ Pix Match:")
         st.markdown(horizontal_bar, True)
@@ -136,14 +136,14 @@ def InitialPage():
     author_dtl = "<strong>Happy Playing: 😎 Shawn Pereira: shawnpereira1969@gmail.com</strong>"
     st.markdown(author_dtl, unsafe_allow_html=True)
 
-def ReadPictureFile(wch_fl):
+def ReadPictureFile(wch_fl): # no entiendo
     try:
         pxfl = f"{vpth}{wch_fl}"
         return base64.b64encode(open(pxfl, 'rb').read()).decode()
 
     except: return ""
 
-def PressedCheck(vcell):
+def PressedCheck(vcell): #verifica si el emoji seleccionado es igual al buscado
     if mystate.plyrbtns[vcell]['isPressed'] == False:
         mystate.plyrbtns[vcell]['isPressed'] = True
         mystate.expired_cells.append(vcell)
@@ -160,7 +160,7 @@ def PressedCheck(vcell):
             mystate.plyrbtns[vcell]['isTrueFalse'] = False
             mystate.myscore -= 1
 
-def ResetBoard():
+def ResetBoard(): # se genera una board nueva despues del turno del jugador
     total_cells_per_row_or_col = mystate.GameDetails[2]
 
     sidebar_emoji_no = random.randint(1, len(mystate.emoji_bank))-1
@@ -182,7 +182,7 @@ def ResetBoard():
             lptr = flst[lptr]
             mystate.plyrbtns[lptr]['eMoji'] = mystate.sidebar_emoji
 
-def PreNewGame():
+def PreNewGame(): # se cargan los emojis y se seleccionan dependiendo de la dificultad seleccionada
     total_cells_per_row_or_col = mystate.GameDetails[2]
     mystate.expired_cells = []
     mystate.myscore = 0
@@ -217,7 +217,7 @@ def PreNewGame():
     mystate.plyrbtns = {}
     for vcell in range(1, ((total_cells_per_row_or_col ** 2)+1)): mystate.plyrbtns[vcell] = {'isPressed': False, 'isTrueFalse': False, 'eMoji': ''}
 
-def ScoreEmoji():
+def ScoreEmoji(): #dependiendo del score final del jugador se retorna un emoji diferente
     if mystate.myscore == 0: return '😐'
     elif -5 <= mystate.myscore <= -1: return '😏'
     elif -10 <= mystate.myscore <= -6: return '☹️'
@@ -226,7 +226,7 @@ def ScoreEmoji():
     elif 6 <= mystate.myscore <= 10: return '😊'
     elif mystate.myscore > 10: return '😁'
 
-def NewGame():
+def NewGame(): # se inicializa el juego
     ResetBoard()
     total_cells_per_row_or_col = mystate.GameDetails[2]
 
