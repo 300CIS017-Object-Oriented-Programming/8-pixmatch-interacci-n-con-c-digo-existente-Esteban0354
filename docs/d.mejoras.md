@@ -45,3 +45,38 @@ Detalla en este markdown lo siguiente:
 - **Métodos Importantes:** Enumera los métodos principales para cada clase. Incluye una descripción de cuál sería la utilidad de cada método
 - **Imagen del UML del diagrama de clases**  Adjunta una imagen del UML del diagrama de clases como una forma visual de planificar y entender la estructura de las clases, métodos, atributos y relaciones que podría tener una versión mejorada del código fuente.
 - **Organización de archivos:** Propon una estructura de organización de los archivos de este proyecto para que no queden todos en la raiz principal. Investiga cuáles podrían ser buenas formas de organizar los directorios y a partir de tu investigación indica qué directorios crearías y cómo los organizarías. 
+
+
+**Clases:**
+- Player
+  **Atributos**
+    - int myScore
+    - string name
+    - string country
+  **Metodos**
+    - Player(int myScore, string name, string country)
+    - gets/sets
+- Board
+  **Atributos**
+    - map<string, string> emojis // Key = el tipo de emojis que contiene, por ejemplo foxes, humans, foods. Value: los emojis
+  **Metodos**
+    - Tablero(map<string, string> emojis)
+    - get/set
+- Game
+  **Atributos**
+    - vector<Player> players
+    - vector<string> board
+    - vector<Player> leaderboard
+    - bool plyrbtns
+    - int dif // dificultad 1 = facil, 2 = medio, 3 = dificil
+    - string siderbar_emoji
+    - vector<string> expCells
+  **Metodos**
+    - Game(vector<Player> players, vector<string> board, vector<Player> leaderboard, bool plyrbtns, int dif, string siderbar_emoji, vector<string> expCells)
+    - void newGame()
+    - void generateLeaderboard(vector<Player> players)
+    - void generateBoard(int dif)
+    - void printResults()
+    - gets/sets
+
+En la clase game se crea el juego, se guardan los jugadores y se genera el tablero, esta clase se relaciona con el main
